@@ -4,8 +4,6 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -20,6 +18,7 @@ import coil.compose.rememberImagePainter
 import com.preprod.weatherforecast.domain.model.DailyForecast
 import com.preprod.weatherforecast.screens.main.MainViewModel
 import com.preprod.weatherforecast.utils.Constants
+import com.preprod.weatherforecast.utils.Utils
 import com.preprod.weatherforecast.wigets.WeatherAppBar
 
 @Composable
@@ -52,7 +51,8 @@ fun MainScaffold(weather: DailyForecast, navController: NavHostController) {
 
 @Composable
 fun MainContent(data: DailyForecast) {
-    val imageUrl = Constants.IMAGE_URL + "${data.list[0].weather[0].icon}.png"
+    val currentDay = data.list[0]
+    val imageUrl = Constants.IMAGE_URL + "${currentDay.weather[0].icon}.png"
     Column(
         modifier = Modifier
             .padding(4.dp)
@@ -61,7 +61,7 @@ fun MainContent(data: DailyForecast) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = "Nov 29", style = MaterialTheme.typography.caption,
+            text = Utils.formatDate(currentDay.dt), style = MaterialTheme.typography.caption,
             fontSize = 14.sp,
             fontWeight = FontWeight.SemiBold,
             color = MaterialTheme.colors.onSecondary,
@@ -80,7 +80,7 @@ fun MainContent(data: DailyForecast) {
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
-                    text = "54",
+                    text = "${currentDay.temp.day}",
                     style = MaterialTheme.typography.h4,
                     fontWeight = FontWeight.ExtraBold
                 )
