@@ -1,2 +1,2 @@
 # WeatherForecast
-Compose Pat Project
+Compose Pet Project
