@@ -13,6 +13,13 @@ object Utils {
     }
 
     @SuppressLint("SimpleDateFormat")
+    fun formatDay(timestamp: Int): String {
+        val sdf = SimpleDateFormat("EEE")
+        val date = Date(timestamp.toLong() * 1000)
+        return sdf.format(date)
+    }
+
+    @SuppressLint("SimpleDateFormat")
     fun formatDateTime(timestamp: Int): String {
         val sdf = SimpleDateFormat("hh:mm:aa")
         val date = Date(timestamp.toLong() * 1000)
