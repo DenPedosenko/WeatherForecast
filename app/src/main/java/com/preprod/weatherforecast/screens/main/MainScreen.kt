@@ -19,13 +19,17 @@ import com.preprod.weatherforecast.components.WeatherStateImage
 import com.preprod.weatherforecast.components.WeekForecast
 import com.preprod.weatherforecast.domain.model.DailyForecast
 import com.preprod.weatherforecast.screens.main.MainViewModel
+import com.preprod.weatherforecast.screens.navigation.WeatherScreens
 import com.preprod.weatherforecast.utils.Constants
 import com.preprod.weatherforecast.utils.Utils
 import com.preprod.weatherforecast.wigets.WeatherAppBar
 
 @Composable
-fun MainScreen(navController: NavHostController) {
+fun MainScreen(navController: NavHostController, city: String?) {
     val viewModel: MainViewModel = hiltViewModel()
+    if (city != null) {
+        viewModel.getWeatherForecast(city = city)
+    }
     if (viewModel.isLoading.value) {
         CircularProgressIndicator()
     } else {
@@ -42,6 +46,9 @@ fun MainScaffold(weather: DailyForecast, navController: NavHostController) {
         WeatherAppBar(
             title = weather.city.name + ", ${weather.city.country}",
             navController = navController,
+            onAddActionClicked = {
+                navController.navigate(route = WeatherScreens.SearchScreen.name)
+            },
             elevation = 5.dp
         ) {
 
