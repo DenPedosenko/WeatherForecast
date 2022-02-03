@@ -11,14 +11,15 @@ import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.preprod.WeatherForecastApp
 import com.preprod.weatherforecast.screens.navigation.WeatherNavigation
 import com.preprod.weatherforecast.ui.theme.WeatherForecastTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
+@ExperimentalComposeUiApi
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
